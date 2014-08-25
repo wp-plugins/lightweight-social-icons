@@ -1,14 +1,14 @@
 === Lightweight Social Icons ===
 Contributors: edge22
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UVPTY2ZJA68S6
-Tags: social icons, social media, social networking, social profiles
-Requires at least: 3.0.1
+Tags: social icons, social media, social networking, social profiles, social icon widget
+Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 0.1
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Looking to add simple social icons to your widget areas? Choose the size and color of your icons, and then choose from 30 different social networking sites.
+Looking to add simple social icons to your widget areas? Choose the size and color of your icons, and then choose from 30 different social profiles.
 
 == Description ==
 
@@ -104,6 +104,10 @@ The "Skype" option takes your Skype username.
 
 The "Phone" option takes your phone number.
 
+= Can I assign different colors to each icon? =
+
+Not at this time (without custom CSS of course). We're hoping to add this feature soon.
+
 == Screenshots ==
 
 1. Set your options and choose which social profiles you want to show off.
@@ -112,10 +116,16 @@ The "Phone" option takes your phone number.
 
 == Changelog ==
 
+= 0.2 =
+* Minor changes made
+
 = 0.1 =
 * Initial release
 
 == Upgrade Notice ==
+
+= 0.2 =
+* Minor changes made
 
 = 0.1 =
 * Initial release

@@ -10,5 +10,10 @@ Changelog Legend:
 
 ----
 
-() - 0.1
+(8/24/2014) - 0.2
+[*] Minor changes
+
+----
+
+(8/20/2014) - 0.1
 Initial Release

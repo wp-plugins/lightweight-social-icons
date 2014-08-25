@@ -2,8 +2,8 @@
 /*
 Plugin Name: Lightweight Social Icons
 Plugin URI: http://generatepress.com/lightweight-social-icons
-Description: Add simple icon font social media buttons. Choose the order, colors, size and more for 28 different icons!
-Version: 0.1
+Description: Add simple icon font social media buttons. Choose the order, colors, size and more for 30 different icons!
+Version: 0.2
 Author: Thomas Usborne
 Author URI: http://edge22.com
 License: GNU General Public License v2 or later

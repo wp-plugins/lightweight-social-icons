@@ -3,7 +3,7 @@
 Plugin Name: Lightweight Social Icons
 Plugin URI: http://generatepress.com/lightweight-social-icons
 Description: Add simple icon font social media buttons. Choose the order, colors, size and more for 30 different icons!
-Version: 0.2
+Version: 0.3
 Author: Thomas Usborne
 Author URI: http://edge22.com
 License: GNU General Public License v2 or later
@@ -44,6 +44,7 @@ class lsi_Widget extends WP_Widget {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_action( 'admin_footer-widgets.php', array( $this, 'print_admin_scripts' ), 9999 );
+		add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_admin_customizer_scripts' ), 9999 );
 	}
 
 	/**
@@ -62,63 +63,17 @@ class lsi_Widget extends WP_Widget {
 		
 		echo $args['before_widget'];
 		
-		if ( ! empty( $title ) ) {
-			echo $args['before_title'] . $title . $args['after_title'];
-		}
+		echo ( ! empty( $title ) ) ? $args['before_title'] . $title . $args['after_title'] : '';
 		
-		if ( isset( $instance['new_window'] ) && '' !== $instance['new_window'] ) {
-			$new_window = 'target="_blank"';
-		} else {
-			$new_window = $defaults['new_window'];
-		}
-		
-		if ( isset( $instance['font_size'] ) && '' !== $instance['font_size'] ) {
-			$font_size = $instance['font_size'];
-		} else {
-			$font_size = $defaults['font_size'];
-		}
-		
-		if ( isset( $instance['border_radius'] ) && '' !== $instance['border_radius'] ) {
-			$border_radius = $instance['border_radius'];
-		} else {
-			$border_radius = $defaults['border_radius'];
-		}
-		
-		if ( isset( $instance['background'] ) && '' !== $instance['background'] ) {
-			$background = $instance['background'];
-		} else {
-			$background = $defaults['background'];
-		}
-		
-		if ( isset( $instance['color'] ) && '' !== $instance['color'] ) {
-			$color = $instance['color'];
-		} else {
-			$color = $defaults['color'];
-		}
-		
-		if ( isset( $instance['background_hover'] ) && '' !== $instance['background_hover'] ) {
-			$background_hover = $instance['background_hover'];
-		} else {
-			$background_hover = $defaults['background_hover'];
-		}
-		
-		if ( isset( $instance['color_hover'] ) && '' !== $instance['color_hover'] ) {
-			$color_hover = $instance['color_hover'];
-		} else {
-			$color_hover = $defaults['color_hover'];
-		}
-		
-		if ( isset( $instance['alignment'] ) && '' !== $instance['alignment'] ) {
-			$alignment = $instance['alignment'];
-		} else {
-			$alignment = $defaults['alignment'];
-		}
-		
-		if ( isset( $instance['tooltip'] ) && '' !== $instance['tooltip'] ) {
-			$tooltip = $instance['tooltip'];
-		} else {
-			$tooltip = $defaults['tooltip'];
-		}
+		$new_window = ( isset( $instance['new_window'] ) && '' !== $instance['new_window'] ) ? 'target="_blank"' : $defaults['new_window'];
+		$font_size = ( isset( $instance['font_size'] ) && '' !== $instance['font_size'] ) ? $instance['font_size'] : $defaults['font_size'];
+		$border_radius = ( isset( $instance['border_radius'] ) && '' !== $instance['border_radius'] ) ? $instance['border_radius'] : $defaults['border_radius'];
+		$background = ( isset( $instance['background'] ) && '' !== $instance['background'] ) ? $instance['background'] : $defaults['background'];
+		$color = ( isset( $instance['color'] ) && '' !== $instance['color'] ) ? $instance['color'] : $defaults['color'];
+		$background_hover = ( isset( $instance['background_hover'] ) && '' !== $instance['background_hover'] ) ? $instance['background_hover'] : $defaults['background_hover'];
+		$color_hover = ( isset( $instance['color_hover'] ) && '' !== $instance['color_hover'] ) ? $instance['color_hover'] : $defaults['color_hover'];
+		$alignment = ( isset( $instance['alignment'] ) && '' !== $instance['alignment'] ) ? $instance['alignment'] : $defaults['alignment'];
+		$tooltip = ( isset( $instance['tooltip'] ) && '' !== $instance['tooltip'] ) ? $instance['tooltip'] : $defaults['tooltip'];
 		
 		$count = 0;
 		foreach ( $options as $option ) {
@@ -131,12 +86,11 @@ class lsi_Widget extends WP_Widget {
 			$value = (!empty( $instance[$input] ) ) ? $instance[$input] : '';
 
 			if ( !empty( $value ) && !empty( $name ) ) :
-				
 				if ( is_email( $value ) ) :
 					$the_value = 'mailto:' . $value;
-				elseif ( 'phone' == $option['id'] ) :
+				elseif ( 'phone' == $name ) :
 					$the_value = 'tel:' . $value;
-				elseif ( 'skype' == $option['id'] ) :
+				elseif ( 'skype' == $name ) :
 					$the_value = 'skype:' . $value;
 				else:
 					$the_value = esc_url( $value );
@@ -203,60 +157,16 @@ class lsi_Widget extends WP_Widget {
 		$options = lsi_icons();
 		
 		$defaults = lsi_option_defaults();
-	
-		if ( isset( $instance[ 'title' ] ) && '' !== $instance[ 'title' ] ) {
-			$title = $instance[ 'title' ];
-		} else {
-			$title = '';
-		}
 		
-		if ( isset( $instance[ 'border_radius' ] ) && '' !== $instance[ 'border_radius' ] ) {
-			$border_radius = $instance[ 'border_radius' ];
-		} else {
-			$border_radius = $defaults['border_radius'];
-		}
-		
-		if ( isset( $instance['font_size'] ) && '' !== $instance['font_size'] ) {
-			$font_size = $instance['font_size'];
-		} else {
-			$font_size = $defaults['font_size'];
-		}
-		
-		if ( isset( $instance[ 'background' ] ) && '' !== $instance[ 'background' ] ) {
-			$background = $instance[ 'background' ];
-		} else {
-			$background = $defaults['background'];
-		}
-		
-		if ( isset( $instance[ 'color' ] ) && '' !== $instance[ 'color' ] ) {
-			$color = $instance[ 'color' ];
-		} else {
-			$color = $defaults['color'];
-		}
-		
-		if ( isset( $instance['background_hover'] ) && '' !== $instance['background_hover'] ) {
-			$background_hover = $instance['background_hover'];
-		} else {
-			$background_hover = $defaults['background_hover'];
-		}
-		
-		if ( isset( $instance['color_hover'] ) && '' !== $instance['color_hover'] ) {
-			$color_hover = $instance['color_hover'];
-		} else {
-			$color_hover = $defaults['color_hover'];
-		}
-		
-		if ( isset( $instance['alignment'] ) && '' !== $instance['alignment'] ) {
-			$alignment = $instance['alignment'];
-		} else {
-			$alignment = $defaults['alignment'];
-		}
-		
-		if ( isset( $instance['tooltip'] ) && '' !== $instance['tooltip'] ) {
-			$tooltip = $instance['tooltip'];
-		} else {
-			$tooltip = $defaults['tooltip'];
-		}
+		$title = ( isset( $instance[ 'title' ] ) && '' !== $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
+		$border_radius = ( isset( $instance[ 'border_radius' ] ) && '' !== $instance[ 'border_radius' ] ) ? $instance[ 'border_radius' ] : $defaults['border_radius'];
+		$font_size = ( isset( $instance[ 'font_size' ] ) && '' !== $instance[ 'font_size' ] ) ? $instance[ 'font_size' ] : $defaults['font_size'];
+		$background = ( isset( $instance[ 'background' ] ) && '' !== $instance[ 'background' ] ) ? $instance[ 'background' ] : $defaults['background'];
+		$color = ( isset( $instance[ 'color' ] ) && '' !== $instance[ 'color' ] ) ? $instance[ 'color' ] : $defaults['color'];
+		$background_hover = ( isset( $instance[ 'background_hover' ] ) && '' !== $instance[ 'background_hover' ] ) ? $instance[ 'background_hover' ] : $defaults['background_hover'];
+		$color_hover = ( isset( $instance[ 'color_hover' ] ) && '' !== $instance[ 'color_hover' ] ) ? $instance[ 'color_hover' ] : $defaults['color_hover'];
+		$alignment = ( isset( $instance[ 'alignment' ] ) && '' !== $instance[ 'alignment' ] ) ? $instance[ 'alignment' ] : $defaults['alignment'];
+		$tooltip = ( isset( $instance[ 'tooltip' ] ) && '' !== $instance[ 'tooltip' ] ) ? $instance[ 'tooltip' ] : $defaults['tooltip'];
 		
 		$c = 0;
 		foreach ( $options as $option ) {
@@ -406,7 +316,12 @@ class lsi_Widget extends WP_Widget {
 				
 			// If Email is set, sanitize the address
 			elseif ( 'email' == $new_instance[$select] ) :
-				$instance[$input] = sanitize_email( $new_instance[$input] );
+			
+				if ( is_email( $new_instance[$input] ) ) {
+					$instance[$input] = sanitize_email( $new_instance[$input] );
+				} else {
+					$instance[$input] = esc_url( $new_instance[$input] );
+				}
 				
 			// For everything else, sanitize the URL
 			else :
@@ -444,7 +359,7 @@ class lsi_Widget extends WP_Widget {
 		wp_enqueue_style( 'lsi-admin-script', plugin_dir_url( __FILE__ ) . 'css/admin.css' );
 		wp_localize_script( 'lsi-script', 'lsiPlaceholder', array(
 			'phone'  => __( '1 (123)-456-7890','lsi'),
-			'email' => __( 'you@yourdomain.com', 'lsi' ),
+			'email' => __( 'you@yourdomain.com or http://', 'lsi' ),
 			'username' => __( 'Username', 'lsi' ),
 		) );
 	}
@@ -454,7 +369,8 @@ class lsi_Widget extends WP_Widget {
 		<script>
 			jQuery(document).ready(function($){
 				function lsi_updateColorPickers(){
-					$('#widgets-right .color-picker').each(function(){
+					
+					$('#widgets-right .color-picker, #accordion-panel-widgets .color-picker').each(function(){
 						$(this).wpColorPicker({
 							// you can declare a default color here,
 							// or in the data-default-color attribute on the input
@@ -468,7 +384,8 @@ class lsi_Widget extends WP_Widget {
 						});
 					}); 
 				}
-				lsi_updateColorPickers();   
+				lsi_updateColorPickers();  
+				
 				$(document).ajaxSuccess(function(e, xhr, settings) {
 
 					if(settings.data.search('action=save-widget') != -1 ) { 
@@ -476,7 +393,69 @@ class lsi_Widget extends WP_Widget {
 						lsi_updateColorPickers();       
 					}
 				});
-			 });
+			});
+			
+		</script>
+		<?php
+	}
+	
+	public function print_admin_customizer_scripts() {
+	 ?>
+		<script>
+			( function( $ ){
+				function lsi_initColorPicker( widget ) {
+					widget.find( '.color-picker' ).wpColorPicker( {
+							change: _.throttle( function() { // For Customizer
+									$(this).trigger( 'change' );
+							}, 3000 )
+					});
+				}
+
+				function lsi_onFormUpdate( event, widget ) {
+					lsi_initColorPicker( widget );
+				}
+
+				$( document ).on( 'widget-added widget-updated', lsi_onFormUpdate );
+
+				$( document ).ready( function() {
+					$( '#accordion-panel-widgets .widget:has(.color-picker)' ).each( function () {
+							lsi_initColorPicker( $( this ) );
+					} );
+				} );
+			}( jQuery ) );
+			
+			jQuery(document).ready(function($){
+				function lsi_updatePlaceholders(){
+					$('#accordion-panel-widgets .choose-icon').each(function(){
+						jQuery(this).change(function() {
+							var select = jQuery(this);
+										
+							if ( jQuery(this).attr('value') == 'phone' ) {
+								jQuery(this).next('input').attr('placeholder',lsiPlaceholder.phone);
+							} else if ( jQuery(this).attr('value') == 'email' ) {
+								jQuery(this).next().attr('placeholder',lsiPlaceholder.email);
+							} else if ( jQuery(this).attr('value') == 'skype' ) {
+								jQuery(this).next().attr('placeholder',lsiPlaceholder.username);
+							}else if ( jQuery(this).attr('value') == '' ) {
+								jQuery(this).next().attr('placeholder','');
+							} else {
+								jQuery(this).next().attr('placeholder','http://');
+							}
+						});
+					}); 
+				}
+				lsi_updatePlaceholders();   
+				$(document).ajaxSuccess(function(e, xhr, settings) {
+
+					if(settings.data.search('action=save-widget') != -1 ) {  
+						lsi_updatePlaceholders();       
+					}
+				});
+				
+				$( document ).on( 'widget-added widget-updated', lsi_updatePlaceholders );
+				
+				
+			});
 		</script>
 		<?php
 	}
@@ -550,8 +529,12 @@ function lsi_icons() {
 		),
 		'email' => array(
 			'id' => 'email',
-			'name' => __( 'Email', 'lsi' )
+			'name' => __( 'Contact', 'lsi' )
 		),
+		// 'contact_page' => array(
+			// 'id' => 'contact',
+			// 'name' => __( 'Contact Page', 'lsi' )
+		// ),
 		'rss' => array(
 			'id' => 'rss',
 			'name' => __( 'RSS', 'lsi' )

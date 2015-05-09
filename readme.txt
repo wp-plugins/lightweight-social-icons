@@ -3,8 +3,8 @@ Contributors: edge22
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UVPTY2ZJA68S6
 Tags: social icons, social media, social networking, social profiles, social icon widget
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 0.2
+Tested up to: 4.2.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,12 @@ The "Phone" option takes your phone number.
 
 Not at this time (without custom CSS of course). We're hoping to add this feature soon.
 
+= Can I display my icons with a shortcode? =
+
+Not by default, but you can use a plugin like this: https://wordpress.org/plugins/widget-shortcode/
+
+It allows you to add the widget to an arbitrary widget area, and then you can call that widget using a shortcode elsewhere in your website.
+
 == Screenshots ==
 
 1. Set your options and choose which social profiles you want to show off.
@@ -116,6 +122,13 @@ Not at this time (without custom CSS of course). We're hoping to add this featur
 
 == Changelog ==
 
+= 0.3 =
+* Add display:block to ul container
+* French translation added
+* Contact can be email address or link to contact page
+* Fix Skype button
+* Optimize to work better in Customizer
+
 = 0.2 =
 * Minor changes made
 
@@ -123,6 +136,13 @@ Not at this time (without custom CSS of course). We're hoping to add this featur
 * Initial release
 
 == Upgrade Notice ==
+
+= 0.3 =
+* Add display:block to ul container
+* French translation added
+* Contact can be email address or link to contact page
+* Fix Skype button
+* Optimize to work better in Customizer
 
 = 0.2 =
 * Minor changes made

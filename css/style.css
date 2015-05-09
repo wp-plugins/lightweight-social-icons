@@ -88,6 +88,7 @@
 	margin: 0 !important;
 	padding: 0 !important;
 	list-style-type: none !important;
+	display: block !important;
 }
 
 .lsi-social-icons li:before,

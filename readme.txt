@@ -16,6 +16,8 @@ Lightweight Social Icons is an easy to use, lightweight social icon widget which
 
 The icons use an icon font, meaning you can choose the size, border radius (roundess), color and hover color of your icons!
 
+Check out GeneratePress, our awesome WordPress theme! (http://wordpress.org/themes/generatepress)
+
 = Features include: =
 
 * Choose your own order
